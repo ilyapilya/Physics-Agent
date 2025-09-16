@@ -2,10 +2,14 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from langchain.agents import initialize_agent, Tool, AgentType
 from langchain_openai import ChatOpenAI
+from dotenv import load_dotenv
 
 import requests
 
-# Agent and Tool Types
+# Load environment variables from .env file
+load_dotenv()
+
+# Agent and Tool Types 
 class AgentRequest(BaseModel):
     question: str
 
