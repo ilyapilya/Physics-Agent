@@ -1,7 +1,0 @@
-CREATE TABLE IF NOT EXISTS responses (
-    id PRIMARY KEY,
-    question TEXT NOT NULL,
-    response TEXT NOT NULL,
-    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-)
-
