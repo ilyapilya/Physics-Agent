@@ -5,21 +5,16 @@ import os
 import sys
 import google.generativeai as genai
 import requests
-import sqlite3
-from database.database import Database  # Import our database handler
 
-# Add the root directory to Python path
-root_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Add the physics-gemini directory to Python path
 project_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, root_dir)
+sys.path.append(project_dir)
 
+# Now we can import directly from the local modules
 from prompting.promptLoader import PromptLoader
-sys.path.append(os.path.join(root_dir, 'database'))
-from database import Database
+from services.database import Database
 
-# Initialize database
-db = Database()
-db.init_db()
+# TODO: Initialize database
 
 # Load environment variables
 load_dotenv()
@@ -84,26 +79,7 @@ while user_question != "quit":
     # Update the markdown file with the latest response
     update_markdown(user_question, response.text)
     
-    # Store in database
-    try:
-        with db.get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(
-                "INSERT INTO responses (question, response) VALUES (?, ?)",
-                (user_question, response.text)
-            )
-            conn.commit()
-        print("\nResponse saved to database and markdown file")
-    except sqlite3.Error as e:
-        print(f"\nError saving to database: {e}")
-        print("Response only saved to markdown file")
+    # TODO: Store in database
 
+    # Continue loop
     user_question = input("\nEnter your physics question as text (or 'quit' to exit): ")
-
-
-
-
-
-
-
-
