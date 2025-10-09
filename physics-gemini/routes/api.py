@@ -6,6 +6,8 @@ import sys
 import google.generativeai as genai
 import requests
 
+app = FastAPI()
+
 # Add the physics-gemini directory to Python path
 project_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(project_dir)
@@ -66,7 +68,7 @@ prompt = pl.load_prompt("core_physics_prompt")
 # Initial question
 user_question = input("Enter your physics question as text: ")
 
-# Main interaction loop
+# Main interaction loop - test
 while user_question != "quit":
     formatted_prompt = prompt.replace("{question}", user_question)
 
@@ -85,3 +87,14 @@ while user_question != "quit":
 
     # Continue loop
     user_question = input("\nEnter your physics question as text (or 'quit' to exit): ")
+
+# Verify if google gemini prompting is async
+@app.post("/prompt")
+def promptLLM(question: str) -> str:
+    formatted_prompt = prompt.replace("{question}", question)
+
+    # LLM prompting logging
+    print("\nSending prompt to Gemini...")
+
+    response = thread.send_message(formatted_prompt)
+    return response.text

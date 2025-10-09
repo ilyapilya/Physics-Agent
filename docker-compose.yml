@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  backend:
+    build: ./physics-gemini
+    volumes:
+      - ./physics-gemini/database:/app/database  # Persist SQLite DB
+    ports:
+      - "8000:8000"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    depends_on:
+      - frontend
+
+  frontend:
+    build: ./ui/physics-ui
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
