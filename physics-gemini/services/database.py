@@ -5,11 +5,12 @@ from datetime import datetime
 
 base = declarative_base()
 
+#-------------------------------- SQL TABLES --------------------------------#
 # SQL Response Table
 class Response(base):
     __tablename__ = 'responses'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    question = Column(String, nullable=False)
+    question = Column(String, autoincrement=true, nullable=False)
     response = Column(String, nullable=False)
     timestamp = Column(DateTime, default=datetime.utcnow) 
 

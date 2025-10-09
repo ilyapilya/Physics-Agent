@@ -1,0 +1,5 @@
+prompts:
+  physics_analysis:
+    description: "Analyze physics problems systematically using fundamental principles and mathematical tools"
+    hypothesis: "By breaking down complex physics problems into basic concepts and applying relevant laws, we can derive meaningful solutions"
+    user: "{question}"

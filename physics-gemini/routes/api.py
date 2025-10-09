@@ -12,9 +12,10 @@ sys.path.append(project_dir)
 
 # Now we can import directly from the local modules
 from prompting.promptLoader import PromptLoader
-from services.database import Database
+import services.database as db
 
-# TODO: Initialize database
+# Initialize Database
+db.init_db() 
 
 # Load environment variables
 load_dotenv()
@@ -80,6 +81,7 @@ while user_question != "quit":
     update_markdown(user_question, response.text)
     
     # TODO: Store in database
+    db.add_response(user_question, response.text)
 
     # Continue loop
     user_question = input("\nEnter your physics question as text (or 'quit' to exit): ")
