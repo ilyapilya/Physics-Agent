@@ -3,7 +3,7 @@
 ## Components:
 - Google Gemini API - Utilized for LLM prompting
 - FastAPI - Backend API Endpoint Integration
-- MySQL / SQLAlchemy - Python SQL wrapper for easy database integration
+- SQLite3 / SQLAlchemy - Python SQL wrapper for easy database integration
 - React.js Frontend - Workflow Management (TODO)
 - UnitTests - CI/CD and Stability Checks
 - Docker - Project Containerization
